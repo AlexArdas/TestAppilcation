@@ -3,7 +3,6 @@ using GeometryHelper;
 using GeometryHelper.Enum;
 using GeometryHelper.Figures;
 using Shouldly;
-using System;
 
 namespace FiguresApplication.Tests
 {
@@ -14,7 +13,7 @@ namespace FiguresApplication.Tests
     {
         private readonly Fixture _fixture;
 
-        // <summary>
+        /// <summary>
         /// Инициализирует новый экземпляр класса ShapeFactoryTests
         /// </summary>
         public ShapeFactoryTests()
@@ -35,7 +34,7 @@ namespace FiguresApplication.Tests
             var expectedCircle = new Circle(radius);
 
             //Act
-            var circle = (Circle) ShapeFactory.CreateShape(shapeType, radius);
+            var circle = (Circle)ShapeFactory.CreateShape(shapeType, radius);
 
             //Assert
             circle.ShouldBe(expectedCircle);
@@ -56,7 +55,7 @@ namespace FiguresApplication.Tests
             var expectedTriangle = new Triangle(side1, side2, side3);
 
             //Act
-            var triangle = (Triangle) ShapeFactory.CreateShape(shapeType, side1, side2, side3);
+            var triangle = (Triangle)ShapeFactory.CreateShape(shapeType, side1, side2, side3);
 
             //Assert
             triangle.ShouldBe(expectedTriangle);
@@ -89,15 +88,15 @@ namespace FiguresApplication.Tests
         public void CrateTriangle_ShouldThrowArgumentException_WhenMessageTypeUncnown()
         {
             //Arrange
-            var shapeType = (ShapeType) 3;
+            var shapeType = (ShapeType)3;
             var properties = _fixture.Create<double[]>();
 
             //Act
             var func = () => ShapeFactory.CreateShape(shapeType, properties);
 
             //Assect
-           func.ShouldThrow<ArgumentException>()
-                .Message.ShouldBe("Неизвестный тип фигуры");
+            func.ShouldThrow<ArgumentException>()
+                 .Message.ShouldBe("Неизвестный тип фигуры");
         }
     }
 }
