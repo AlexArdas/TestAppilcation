@@ -9,11 +9,6 @@ namespace FiguresApplication.Tests
     /// </summary>
     public class ValidatorTests
     {
-        /// <summary>
-        /// Проверяет возвращает ли метод GetValidValue корректное значение double при валидном вводе
-        /// </summary>
-        /// <param name="input">Входное значение</param>
-        /// <param name="expected">Ожидаемое значение</param>
         [Theory]
         [InlineData("5", 5)]
         [InlineData("3.14", 3.14)]
@@ -27,10 +22,6 @@ namespace FiguresApplication.Tests
             Assert.Equal(expected, result);
         }
 
-        /// <summary>
-        /// Проверяет выбрасывает ли метод GetValidValue исключение ArgumentException при невалидном вводе
-        /// </summary>
-        /// <param name="input">Входное значение</param>
         [Theory]
         [InlineData("abc")]
         [InlineData("pup")]
@@ -43,10 +34,6 @@ namespace FiguresApplication.Tests
                 (() => ShapeValidator.GetValidValue(input));
         }
 
-        /// <summary>
-        /// Проверяет выбрасывает ли метод ValidateTriangle исключение ArgumentException при невалидных сторонах треугольника
-        /// </summary>
-        /// <param name="sides">Массив значений сторон треугольника</param>
         [Theory]
         [InlineData(new double[] { -1, 4, 5 })]
         [InlineData(new double[] { 3, -4, 5 })]
@@ -59,10 +46,6 @@ namespace FiguresApplication.Tests
                 (() => ShapeValidator.ValidateTriangle(sides));
         }
 
-        /// <summary>
-        /// Проверяет выбрасывает ли метод ValidateTriangle исключение ArgumentException при некорректном числе сторон треугольника
-        /// </summary>
-        /// <param name="sides">Массив значений сторон треугольника</param>
         [Theory]
         [InlineData(new double[] { 1, 1 })]
         [InlineData(new double[] { 1, 1, 1, 1 })]
@@ -73,10 +56,6 @@ namespace FiguresApplication.Tests
                 (() => ShapeValidator.ValidateTriangle(sides));
         }
 
-        /// <summary>
-        /// Проверяет выбрасывает ли метод ValidateTriangle исключение ArgumentException при невозможности существования треугольника
-        /// </summary>
-        /// <param name="sides">Массив значений сторон треугольника</param>
         [Theory]
         [InlineData(new double[] { 1, 2, 10 })]
         [InlineData(new double[] { 2, 5, 20 })]
@@ -87,10 +66,6 @@ namespace FiguresApplication.Tests
                 (() => ShapeValidator.ValidateTriangle(sides));
         }
 
-        /// <summary>
-        /// Проверяет выбрасывает ли метод ValidateCircle исключение ArgumentException при невалидном радиусе
-        /// </summary>
-        /// <param name="radius">Значение радиуса</param>
         [Theory]
         [InlineData(0)]
         [InlineData(-5)]

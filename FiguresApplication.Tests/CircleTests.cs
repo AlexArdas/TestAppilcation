@@ -19,9 +19,6 @@ namespace FiguresApplication.Tests
             _fixture = new Fixture();
         }
 
-        /// <summary>
-        /// Проверяет что метод CalculateArea корректно вычисляет площадь
-        /// </summary>
         [Fact]
         public void CalculateArea_ShouldCalculateArea()
         {

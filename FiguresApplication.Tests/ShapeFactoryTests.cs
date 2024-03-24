@@ -21,9 +21,6 @@ namespace FiguresApplication.Tests
             _fixture = new Fixture();
         }
 
-        /// <summary>
-        /// Проверяет, создает ли метод CreateShape круг
-        /// </summary>
         [Fact]
         public void CreateShape_ShouldCreateCircle()
         {
@@ -40,9 +37,6 @@ namespace FiguresApplication.Tests
             circle.ShouldBe(expectedCircle);
         }
 
-        /// <summary>
-        /// Проверяет создает ли метод CreateShape треугольник
-        /// </summary>
         [Fact]
         public void CreateShape_ShouldCreateTriangle()
         {
@@ -61,10 +55,6 @@ namespace FiguresApplication.Tests
             triangle.ShouldBe(expectedTriangle);
         }
 
-        /// <summary>
-        /// Проверяет выбрасывает ли метод CreateShape исключение ArgumentNullException при передаче пустого массива свойств
-        /// </summary>
-        /// <param name="properties">Массив свойств</param>
         [Theory]
         [InlineData(null)]
         [InlineData(new double[0])]
@@ -81,9 +71,6 @@ namespace FiguresApplication.Tests
                 .Message.ShouldContain($"{properties} не должны быть пустыми");
         }
 
-        /// <summary>
-        /// Проверяет выбрасывает ли метод CreateShape исключение ArgumentException при передаче неизвестного типа фигуры
-        /// </summary>
         [Fact]
         public void CrateTriangle_ShouldThrowArgumentException_WhenMessageTypeUncnown()
         {

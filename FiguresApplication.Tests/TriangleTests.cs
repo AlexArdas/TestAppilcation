@@ -20,9 +20,6 @@ namespace FiguresApplication.Tests
             _fixture = new Fixture();
         }
 
-        /// <summary>
-        /// Проверяет, что метод CalculateArea корректно вычисляет площадь
-        /// </summary>
         [Fact]
         public void CalculateArea_ShouldCalculateArea()
         {
@@ -42,9 +39,6 @@ namespace FiguresApplication.Tests
             area.ShouldBe(expectedArea);
         }
 
-        /// <summary>
-        /// Проверяет что метод IsRightAngled вернет true для прямоугольного треугольника
-        /// </summary>
         [Fact]
         public void IsRightAngled_ShouldReturnTrueForRightAngleTriangle()
         {
@@ -61,9 +55,6 @@ namespace FiguresApplication.Tests
             isRightAngled.ShouldBeTrue();
         }
 
-        /// <summary>
-        /// Проверяет что метод IsRightAngled вернет false для прямоугольного треугольника
-        /// </summary>
         [Fact]
         public void IsRightAngled_ShouldReturnFalseForRightAngleTriangle()
         {
