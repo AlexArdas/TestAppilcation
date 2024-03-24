@@ -6,16 +6,10 @@ using Shouldly;
 
 namespace FiguresApplication.Tests
 {
-    /// <summary>
-    /// Тесты для проверки фигур
-    /// </summary>
     public class ShapeFactoryTests
     {
         private readonly Fixture _fixture;
 
-        /// <summary>
-        /// Инициализирует новый экземпляр класса ShapeFactoryTests
-        /// </summary>
         public ShapeFactoryTests()
         {
             _fixture = new Fixture();
