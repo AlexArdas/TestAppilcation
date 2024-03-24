@@ -7,7 +7,7 @@ using Shouldly;
 namespace FiguresApplication.Tests
 {
     /// <summary>
-    /// Класс тестов для проверки фигур
+    /// Тесты для проверки фигур
     /// </summary>
     public class ShapeFactoryTests
     {
