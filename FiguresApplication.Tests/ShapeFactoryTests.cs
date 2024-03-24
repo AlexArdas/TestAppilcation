@@ -1,0 +1,103 @@
+using AutoFixture;
+using GeometryHelper;
+using GeometryHelper.Enum;
+using GeometryHelper.Figures;
+using Shouldly;
+using System;
+
+namespace FiguresApplication.Tests
+{
+    /// <summary>
+    /// Класс тестов для проверки фигур
+    /// </summary>
+    public class ShapeFactoryTests
+    {
+        private readonly Fixture _fixture;
+
+        // <summary>
+        /// Инициализирует новый экземпляр класса ShapeFactoryTests
+        /// </summary>
+        public ShapeFactoryTests()
+        {
+            _fixture = new Fixture();
+        }
+
+        /// <summary>
+        /// Проверяет, создает ли метод CreateShape круг
+        /// </summary>
+        [Fact]
+        public void CreateShape_ShouldCreateCircle()
+        {
+            //Arrange
+            var radius = _fixture.Create<uint>();
+            var shapeType = ShapeType.Circle;
+
+            var expectedCircle = new Circle(radius);
+
+            //Act
+            var circle = (Circle) ShapeFactory.CreateShape(shapeType, radius);
+
+            //Assert
+            circle.ShouldBe(expectedCircle);
+        }
+
+        /// <summary>
+        /// Проверяет создает ли метод CreateShape треугольник
+        /// </summary>
+        [Fact]
+        public void CreateShape_ShouldCreateTriangle()
+        {
+            //Arrange
+            var side1 = _fixture.Create<uint>();
+            var side2 = _fixture.Create<uint>();
+            var side3 = side1 + side2 - 1;
+            var shapeType = ShapeType.Triangle;
+
+            var expectedTriangle = new Triangle(side1, side2, side3);
+
+            //Act
+            var triangle = (Triangle) ShapeFactory.CreateShape(shapeType, side1, side2, side3);
+
+            //Assert
+            triangle.ShouldBe(expectedTriangle);
+        }
+
+        /// <summary>
+        /// Проверяет выбрасывает ли метод CreateShape исключение ArgumentNullException при передаче пустого массива свойств
+        /// </summary>
+        /// <param name="properties">Массив свойств</param>
+        [Theory]
+        [InlineData(null)]
+        [InlineData(new double[0])]
+        public void CrateTriangle_ShouldThrowArgumentNullException_WhenPropertiesIsNull(double[] properties)
+        {
+            //Arrange
+            var shapeType = _fixture.Create<ShapeType>();
+
+            //Act
+            var func = () => ShapeFactory.CreateShape(shapeType, properties);
+
+            //Assert
+            func.ShouldThrow<ArgumentNullException>()
+                .Message.ShouldContain($"{properties} не должны быть пустыми");
+        }
+
+        /// <summary>
+        /// Проверяет выбрасывает ли метод CreateShape исключение ArgumentException при передаче неизвестного типа фигуры
+        /// </summary>
+        [Fact]
+        public void CrateTriangle_ShouldThrowArgumentException_WhenMessageTypeUncnown()
+        {
+            //Arrange
+            var shapeType = (ShapeType) 3;
+            var properties = _fixture.Create<double[]>();
+
+            //Act
+            var func = () => ShapeFactory.CreateShape(shapeType, properties);
+
+            //Assect
+           func.ShouldThrow<ArgumentException>()
+                .Message.ShouldBe("Неизвестный тип фигуры");
+        }
+    }
+}
